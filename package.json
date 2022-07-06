@@ -1,6 +1,6 @@
 {
   "name": "trello-event-handler",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "lib/index.js",
   "types": "lib",
@@ -21,6 +21,7 @@
   "homepage": "https://github.com/ludovic-str/trello-event-handler#readme",
   "dependencies": {
     "axios": "^0.27.2",
+    "events": "^3.3.0",
     "ts-node": "^10.8.2",
     "typescript": "^4.7.4"
   }
