@@ -1,0 +1,1 @@
+{"version":3,"file":"addOrganisation.types.d.ts","sourceRoot":"","sources":["../../../src/types/request/addOrganisation.types.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,KAAK,EAAE,MAAM,gBAAgB,CAAC;AAEvC,UAAU,YAAY;IACpB,EAAE,EAAE,MAAM,CAAC;IACX,IAAI,EAAE,MAAM,CAAC;CACd;AAED,MAAM,WAAW,mBAAmB;IAClC,IAAI,EAAE,KAAK,CAAC;IACZ,YAAY,EAAE,YAAY,CAAC;CAC5B"}

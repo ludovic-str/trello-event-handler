@@ -1,5 +1,6 @@
 import { UpdateData } from "./update.types";
 import { AddOrganisationData } from "./addOrganisation.types";
+import { CreateCardData } from "./createCard.types";
 
 export interface Board {
   id: string;
@@ -23,7 +24,7 @@ interface MemberCreator {
 export interface ActionData {
   id: string;
   idMemberCreator: string;
-  data: UpdateData | AddOrganisationData;
+  data: UpdateData | AddOrganisationData | CreateCardData;
   appCreator: string | null;
   type: string;
   date: string;
