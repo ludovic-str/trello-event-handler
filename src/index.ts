@@ -7,13 +7,13 @@ import formatAction from "./format";
 import { TrelloAction } from "./types/formatedType/formated.types";
 
 export class TrelloEventHandler {
-  readonly credentials: Credentials;
+  #credentials: Credentials;
   #lastUpdate: number;
   #e: EventEmitter;
   #boards: BoardListInfo[];
 
   constructor(key: string, token: string) {
-    this.credentials = { key, token };
+    this.#credentials = { key, token };
     this.#lastUpdate = Date.now();
     this.#boards = [];
     this.#e = new EventEmitter();
@@ -51,7 +51,7 @@ export class TrelloEventHandler {
   }
 
   private async getBoardActivity(boardId: string) {
-    const data = await fetchBoardInfo(this.credentials, boardId);
+    const data = await fetchBoardInfo(this.#credentials, boardId);
     if (data === null) return;
     for (let action of data) {
       if (new Date(action.date).getTime() > this.#lastUpdate) {

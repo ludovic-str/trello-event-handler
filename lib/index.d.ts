@@ -1,8 +1,7 @@
-import { Credentials, EventType } from "./types/global.types";
+import { EventType } from "./types/global.types";
 import { TrelloAction } from "./types/formatedType/formated.types";
 export declare class TrelloEventHandler {
     #private;
-    readonly credentials: Credentials;
     constructor(key: string, token: string);
     start(): void;
     stop(): void;
