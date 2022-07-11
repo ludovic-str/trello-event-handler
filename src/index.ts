@@ -1,14 +1,16 @@
 import { EventEmitter } from "events";
 
-import { Credentials } from "./types/global.types";
+import { BoardListInfo, Credentials, EventType } from "./types/global.types";
 import fetchBoardInfo from "./fetchBoardInfo";
-import { ActionData } from "./types/request/action.types";
+import { RawActionData } from "./types/request/action.types";
+import formatAction from "./format";
+import { TrelloAction } from "./types/formatedType/formated.types";
 
 export class TrelloEventHandler {
   readonly credentials: Credentials;
   #lastUpdate: number;
   #e: EventEmitter;
-  #boards: string[];
+  #boards: BoardListInfo[];
 
   constructor(key: string, token: string) {
     this.credentials = { key, token };
@@ -28,18 +30,24 @@ export class TrelloEventHandler {
     clearInterval();
   }
 
-  on(event: string, callback: (args: ActionData) => void) {
+  on(event: EventType, callback: (args: TrelloAction) => void) {
     this.#e.on(event, callback);
   }
 
-  addBoardFromUrl(url: string) {
+  addBoardFromUrl(url: string, name: string) {
     const boardId = url.split("/")[4];
-    this.#boards.push(boardId);
-    console.log(this.#boards);
+    this.#boards.push({ id: boardId, name });
   }
 
-  addBoardFromId(id: string) {
-    this.#boards.push(id);
+  addBoardFromId(id: string, name: string) {
+    this.#boards.push({ id, name });
+  }
+
+  removeBoadByName(name: string): boolean {
+    const boardIndex = this.#boards.findIndex((item) => item.name === name);
+    if (boardIndex === -1) return false;
+    this.#boards.splice(boardIndex, 1);
+    return true;
   }
 
   private async getBoardActivity(boardId: string) {
@@ -47,14 +55,17 @@ export class TrelloEventHandler {
     if (data === null) return;
     for (let action of data) {
       if (new Date(action.date).getTime() > this.#lastUpdate) {
-        this.#e.emit(action.type, action);
+        const formatedData = formatAction(action);
+        console.log("ici");
+        console.log(formatedData);
+        if (formatedData !== null)
+          this.#e.emit(formatedData.action.type, formatedData);
       }
     }
     this.#lastUpdate = Date.now();
-    console.log("test");
   }
 
   private poll(ref: TrelloEventHandler) {
-    ref.#boards.forEach((id) => ref.getBoardActivity(id));
+    ref.#boards.forEach((board) => ref.getBoardActivity(board.id));
   }
 }

@@ -1,6 +1,4 @@
-import { UpdateData } from "./update.types";
-import { AddOrganisationData } from "./addOrganisation.types";
-import { CreateCardData } from "./createCard.types";
+import { CardData } from "./update.types";
 
 export interface Board {
   id: string;
@@ -8,7 +6,7 @@ export interface Board {
   shortLink: string;
 }
 
-interface MemberCreator {
+export interface MemberCreator {
   id: string;
   activityBlocked: boolean;
   avatarHash: string;
@@ -21,10 +19,10 @@ interface MemberCreator {
   username: string;
 }
 
-export interface ActionData {
+export interface RawActionData {
   id: string;
   idMemberCreator: string;
-  data: UpdateData | AddOrganisationData | CreateCardData;
+  data: CardData;
   appCreator: string | null;
   type: string;
   date: string;
