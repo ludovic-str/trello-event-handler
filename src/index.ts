@@ -56,8 +56,6 @@ export class TrelloEventHandler {
     for (let action of data) {
       if (new Date(action.date).getTime() > this.#lastUpdate) {
         const formatedData = formatAction(action);
-        console.log("ici");
-        console.log(formatedData);
         if (formatedData !== null)
           this.#e.emit(formatedData.action.type, formatedData);
       }
