@@ -54,11 +54,10 @@ export class TrelloEventHandler {
     const data = await fetchBoardInfo(this.#credentials, boardId);
     if (data === null) return;
     for (let action of data) {
-      if (new Date(action.date).getTime() > this.#lastUpdate) {
-        const formatedData = formatAction(action);
-        if (formatedData !== null)
-          this.#e.emit(formatedData.action.type, formatedData);
-      }
+      if (new Date(action.date).getTime() < this.#lastUpdate) break;
+      const formatedData = formatAction(action);
+      if (formatedData !== null)
+        this.#e.emit(formatedData.action.type, formatedData);
     }
     this.#lastUpdate = Date.now();
   }
