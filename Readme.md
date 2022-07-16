@@ -1,6 +1,7 @@
 # Trello-event-handler
 
-![Version](https://img.shields.io/badge/version-0.1.3-blue.svg?cacheSeconds=2592000)
+![Version](https://img.shields.io/badge/version-0.1.5-blue.svg?cacheSeconds=2592000)
+
 ## Description
 
 The purpose of this library is to make the retrieval of the different actions done on your Trello simple and to be able to easily use the resulting data.
@@ -24,7 +25,6 @@ trello.start();
 
 /// exemple
 trello.on("createCard", (action) => {
-    console.log(action);
-})
+  console.log(action);
+});
 ```
-

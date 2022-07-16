@@ -34,13 +34,19 @@ export class TrelloEventHandler {
     this.#e.on(event, callback);
   }
 
-  addBoardFromUrl(url: string, name: string) {
+  async addBoardFromUrl(url: string, name: string): Promise<string | null> {
     const boardId = url.split("/")[4];
+    const doesBoardExist = await fetchBoardInfo(this.#credentials, boardId);
+    if (doesBoardExist === null) return null;
     this.#boards.push({ id: boardId, name });
+    return boardId;
   }
 
-  addBoardFromId(id: string, name: string) {
+  async addBoardFromId(id: string, name: string): Promise<string | null> {
+    const doesBoardExist = await fetchBoardInfo(this.#credentials, id);
+    if (doesBoardExist === null) return null;
     this.#boards.push({ id, name });
+    return id;
   }
 
   removeBoadByName(name: string): boolean {
