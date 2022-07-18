@@ -1,4 +1,4 @@
-import { EventType } from "./types/global.types";
+import { BoardListInfo, EventType } from "./types/global.types";
 import { TrelloAction } from "./types/formatedType/formated.types";
 export declare class TrelloEventHandler {
     #private;
@@ -6,8 +6,8 @@ export declare class TrelloEventHandler {
     start(): void;
     stop(): void;
     on(event: EventType, callback: (args: TrelloAction) => void): void;
-    addBoardFromUrl(url: string): Promise<string | null>;
-    addBoardFromId(id: string): Promise<string | null>;
+    addBoardFromUrl(url: string): Promise<BoardListInfo | null>;
+    addBoardFromId(id: string): Promise<BoardListInfo | null>;
     removeBoadByName(name: string): boolean;
     private getBoardActivity;
     private boardIdAlreadyExist;

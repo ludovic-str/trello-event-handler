@@ -34,7 +34,7 @@ export class TrelloEventHandler {
     this.#e.on(event, callback);
   }
 
-  async addBoardFromUrl(url: string): Promise<string | null> {
+  async addBoardFromUrl(url: string): Promise<BoardListInfo | null> {
     const boardId = url.split("/")[4];
     const boardInfos = await fetchBoardInfos(this.#credentials, boardId);
 
@@ -46,10 +46,10 @@ export class TrelloEventHandler {
       return null;
 
     this.#boards.push({ id: boardId, name: boardInfos.name });
-    return boardInfos.name;
+    return { id: boardId, name: boardInfos.name };
   }
 
-  async addBoardFromId(id: string): Promise<string | null> {
+  async addBoardFromId(id: string): Promise<BoardListInfo | null> {
     const boardInfos = await fetchBoardInfos(this.#credentials, id);
 
     if (boardInfos === null) return null;
@@ -60,7 +60,7 @@ export class TrelloEventHandler {
       return null;
 
     this.#boards.push({ id, name: boardInfos.name });
-    return boardInfos.name;
+    return { id, name: boardInfos.name };
   }
 
   removeBoadByName(name: string): boolean {
