@@ -6,8 +6,8 @@ export declare class TrelloEventHandler {
     start(): void;
     stop(): void;
     on(event: EventType, callback: (args: TrelloAction) => void): void;
-    addBoardFromUrl(url: string, name: string): Promise<string | null>;
-    addBoardFromId(id: string, name: string): Promise<string | null>;
+    addBoardFromUrl(url: string): Promise<string | null>;
+    addBoardFromId(id: string): Promise<string | null>;
     removeBoadByName(name: string): boolean;
     private getBoardActivity;
     private poll;

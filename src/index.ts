@@ -1,10 +1,11 @@
 import { EventEmitter } from "events";
 
 import { BoardListInfo, Credentials, EventType } from "./types/global.types";
-import fetchBoardInfo from "./fetchBoardInfo";
+import fetchActionsInfos from "./fetchActionsInfos";
 import { RawActionData } from "./types/request/action.types";
 import formatAction from "./format";
 import { TrelloAction } from "./types/formatedType/formated.types";
+import fetchBoardInfos from "./fetchBoardInfo";
 
 export class TrelloEventHandler {
   #credentials: Credentials;
@@ -34,19 +35,19 @@ export class TrelloEventHandler {
     this.#e.on(event, callback);
   }
 
-  async addBoardFromUrl(url: string, name: string): Promise<string | null> {
+  async addBoardFromUrl(url: string): Promise<string | null> {
     const boardId = url.split("/")[4];
-    const doesBoardExist = await fetchBoardInfo(this.#credentials, boardId);
-    if (doesBoardExist === null) return null;
-    this.#boards.push({ id: boardId, name });
-    return boardId;
+    const boardInfos = await fetchBoardInfos(this.#credentials, boardId);
+    if (boardInfos === null) return null;
+    this.#boards.push({ id: boardId, name: boardInfos.name });
+    return boardInfos.name;
   }
 
-  async addBoardFromId(id: string, name: string): Promise<string | null> {
-    const doesBoardExist = await fetchBoardInfo(this.#credentials, id);
-    if (doesBoardExist === null) return null;
-    this.#boards.push({ id, name });
-    return id;
+  async addBoardFromId(id: string): Promise<string | null> {
+    const boardInfos = await fetchBoardInfos(this.#credentials, id);
+    if (boardInfos === null) return null;
+    this.#boards.push({ id, name: boardInfos.name });
+    return boardInfos.name;
   }
 
   removeBoadByName(name: string): boolean {
@@ -57,14 +58,16 @@ export class TrelloEventHandler {
   }
 
   private async getBoardActivity(boardId: string) {
-    const data = await fetchBoardInfo(this.#credentials, boardId);
+    const data = await fetchActionsInfos(this.#credentials, boardId);
     if (data === null) return;
+
     for (let action of data) {
       if (new Date(action.date).getTime() < this.#lastUpdate) break;
       const formatedData = formatAction(action);
       if (formatedData !== null)
         this.#e.emit(formatedData.action.type, formatedData);
     }
+
     this.#lastUpdate = Date.now();
   }
 
