@@ -6,6 +6,7 @@ const getActionInfo = (rawAction: RawActionData): ActionInfos => {
     id: rawAction.id,
     date: rawAction.date,
     idMemberCreator: rawAction.idMemberCreator,
+    board: rawAction.data.board,
   };
 };
 

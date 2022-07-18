@@ -7,7 +7,6 @@ interface ChangeListCardInfo {
 
 export interface ChangeListAction {
   type: "changeList";
-  boardInfo: Board;
   card: ChangeListCardInfo;
   listBefore: List;
   newList: List;

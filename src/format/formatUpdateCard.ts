@@ -8,7 +8,6 @@ const formatChangeList = (rawAction: RawActionData): TrelloAction => {
     infos: getActionInfo(rawAction),
     action: {
       type: "changeList",
-      boardInfo: rawAction.data.board,
       card: {
         id: rawAction.data.card.id,
         name: rawAction.data.card.name,
@@ -31,7 +30,6 @@ const formatChangeName = (rawAction: RawActionData): TrelloAction => {
     infos: getActionInfo(rawAction),
     action: {
       type: "changeName",
-      board: rawAction.data.board,
       list: rawAction.data.list,
       oldName: rawAction.data.old.name || "",
       card: {
@@ -48,7 +46,6 @@ const formatChangeDescription = (rawAction: RawActionData): TrelloAction => {
     infos: getActionInfo(rawAction),
     action: {
       type: "changeDescription",
-      board: rawAction.data.board,
       list: rawAction.data.list,
       card: {
         id: rawAction.data.card.id,
@@ -66,7 +63,6 @@ const formatChangeClosed = (rawAction: RawActionData): TrelloAction => {
     infos: getActionInfo(rawAction),
     action: {
       type: "closedCard",
-      board: rawAction.data.board,
       list: rawAction.data.list,
       card: {
         id: rawAction.data.card.id,

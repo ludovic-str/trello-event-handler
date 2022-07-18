@@ -1,4 +1,4 @@
-import { MemberCreator } from "../request/action.types";
+import { Board, MemberCreator } from "../request/action.types";
 import { AddToBoardAction } from "./action/addBoard.types";
 import { CreateCardAction } from "./action/createCard.types";
 import { ChangeListAction } from "./action/changeList.types";
@@ -8,6 +8,7 @@ import { CloseCardInfo } from "./action/closeCard.types";
 export interface ActionInfos {
     id: string;
     date: string;
+    board: Board;
     idMemberCreator: string;
 }
 export interface TrelloAction {

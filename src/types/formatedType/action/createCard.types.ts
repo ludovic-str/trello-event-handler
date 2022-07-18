@@ -7,7 +7,6 @@ interface CreatedCardInfo {
 
 export interface CreateCardAction {
   type: "createCard";
-  board: Board;
   list: List;
   card: CreatedCardInfo;
 }

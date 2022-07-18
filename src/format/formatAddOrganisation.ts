@@ -8,7 +8,6 @@ const formatAddToOrganisation = (rawAction: RawActionData): TrelloAction => {
     infos: getActionInfo(rawAction),
     action: {
       type: "addToBoard",
-      boardInfo: rawAction.data.board,
       organisation: rawAction.data.organisation || { name: "", id: "" },
     },
   };
