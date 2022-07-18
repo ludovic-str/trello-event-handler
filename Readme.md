@@ -1,6 +1,6 @@
 # Trello-event-handler
 
-![Version](https://img.shields.io/badge/version-0.1.6-blue.svg?cacheSeconds=2592000)
+![Version](https://img.shields.io/badge/version-0.2.0-blue.svg?cacheSeconds=2592000)
 
 ## Description
 

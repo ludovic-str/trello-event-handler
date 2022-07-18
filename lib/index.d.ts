@@ -10,6 +10,8 @@ export declare class TrelloEventHandler {
     addBoardFromId(id: string): Promise<string | null>;
     removeBoadByName(name: string): boolean;
     private getBoardActivity;
+    private boardIdAlreadyExist;
+    private boardNameAlreadyExist;
     private poll;
 }
 //# sourceMappingURL=index.d.ts.map
