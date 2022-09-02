@@ -5,6 +5,7 @@ import { ChangeListAction } from "./action/changeList.types";
 import { ChangeCardNameInfo } from "./action/changeName.types";
 import { ChangeDescriptionInfo } from "./action/changeDescription.types";
 import { CloseCardInfo } from "./action/closeCard.types";
+import { AddMemberToCard } from "./action/addMemberToCard";
 
 export interface ActionInfos {
   id: string;
@@ -22,5 +23,6 @@ export interface TrelloAction {
     | ChangeListAction
     | ChangeCardNameInfo
     | ChangeDescriptionInfo
-    | CloseCardInfo;
+    | CloseCardInfo
+    | AddMemberToCard;
 }

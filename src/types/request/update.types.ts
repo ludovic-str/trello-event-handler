@@ -27,6 +27,11 @@ interface Organisation {
   name: string;
 }
 
+export interface Member {
+  id: string;
+  name: string;
+}
+
 export interface CardData {
   card: Card;
   board: Board;
@@ -35,4 +40,5 @@ export interface CardData {
   listBefore: List | undefined;
   listAfter: List | undefined;
   organisation: Organisation | undefined;
+  member: Member | undefined;
 }

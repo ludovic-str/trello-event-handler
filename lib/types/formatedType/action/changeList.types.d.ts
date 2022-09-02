@@ -1,13 +1,8 @@
-import { List } from "./genericAction.types";
-interface ChangeListCardInfo {
-    id: string;
-    name: string;
-}
+import { Card, List } from "./genericAction.types";
 export interface ChangeListAction {
     type: "changeList";
-    card: ChangeListCardInfo;
+    card: Card;
     listBefore: List;
     newList: List;
 }
-export {};
 //# sourceMappingURL=changeList.types.d.ts.map

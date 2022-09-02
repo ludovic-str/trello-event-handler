@@ -1,0 +1,1 @@
+{"version":3,"file":"addMemberToCard.d.ts","sourceRoot":"","sources":["../../../../src/types/formatedType/action/addMemberToCard.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,MAAM,EAAE,MAAM,4BAA4B,CAAC;AACpD,OAAO,EAAE,IAAI,EAAE,MAAM,uBAAuB,CAAC;AAE7C,MAAM,WAAW,eAAe;IAC9B,IAAI,EAAE,IAAI,CAAC;IACX,IAAI,EAAE,iBAAiB,CAAC;IACxB,MAAM,EAAE,MAAM,CAAC;CAChB"}
