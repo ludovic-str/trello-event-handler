@@ -14,4 +14,5 @@ export type EventType =
   | "changeName"
   | "changeList"
   | "changeDescription"
-  | "addToBoard";
+  | "addToBoard"
+  | "addMemberToCard";
